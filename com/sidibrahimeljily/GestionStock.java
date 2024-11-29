@@ -1,6 +1,7 @@
 package com.sidibrahimeljily;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class GestionStock {
@@ -139,16 +140,9 @@ public class GestionStock {
             printMenu();
         }
         if(choice==5){
-            System.out.println("Veuillez saisir le code du produit a chercher : \n");
-            int code =sc.nextInt();
-            while (validerCode(code)) {
-                System.out.println(" Produit n'exist pas avec le code  => "+ code + " veuillez saisir un code valid , tapez 0 pour quitter:\n");
-                if (code==0){
-                    printMenu();
-                }
-                code = sc.nextInt();
-            }
-            System.out.println(chercherProduit(code));
+            System.out.println("Veuillez saisir le nom du produit a chercher : \n");
+            String nomProduit =sc.next();
+            System.out.println(chercherProduit(nomProduit));
 
             System.out.println("""
                                         
@@ -238,13 +232,13 @@ public class GestionStock {
         }
     }
 
-    public static String chercherProduit(int code){
+    public static String chercherProduit(String nom){
         for (int i=0;i<produits.length;i++){
-            if (produits[i]!=null && produits[i].getCode()==code){
+            if (produits[i]!=null && Objects.equals(produits[i].getNom(), nom)){
                 return produits[i].toString();
             }
         }
-        return "Erreur ";
+        return "Produit n'exist pas avec le nom => "+nom;
     }
 
     public static void main(String[] args) {
