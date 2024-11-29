@@ -20,7 +20,7 @@ public class GestionStock {
                 6.calculer la valeur total du stock
                 0.Quiter
                                 
-                Choisissez un option :
+                Choisissez une option :
                 """);
         Scanner sc = new Scanner(System.in);
         int choice = sc.nextInt();
@@ -99,6 +99,29 @@ public class GestionStock {
             printMenu();
 
     }
+        if (choice==3){
+            System.out.println("Veuillez saisir le code du produit a supprimer : \n");
+            int code =sc.nextInt();
+            while (validerCode(code)) {
+                System.out.println(" Produit n'exist pas avec le code  => "+ code + " veuillez saisir un code valid :\n");
+                code = sc.nextInt();
+            }
+            System.out.println(supprimerProduit(code));
+
+            System.out.println("""
+                                        
+                                        
+                    ------------------------------------------------------------------------------------
+                    | Cliquer 1 pour retourner au menu ,ou tapez ce que vous voulez pour quitter : | " +
+                    ------------------------------------------------------------------------------------
+                    """);
+            choice = sc.nextInt();
+            if (choice != 1) {
+                return;
+            }
+            printMenu();
+
+        }
 
 
 
@@ -123,6 +146,18 @@ public class GestionStock {
             }
         }
         return "produit n'exist pas avec le code que vous avez inserer";
+    }
+    public static String supprimerProduit(int code){
+        for(int i =0;i< produits.length;i++){
+            if (produits[i]!=null){
+                if (produits[i].getCode()==code){
+                    //pour supprimer un produits
+                    produits[i]=null;
+                    return "Produit supprimer avec succes !";
+                }
+            }
+        }
+        return "Prdocuit n'est pas supprimer";
     }
 
     public static boolean validerCode(int code) {
