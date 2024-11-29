@@ -158,8 +158,21 @@ public class GestionStock {
             printMenu();
 
         }
-
-
+        if (choice==6){
+            System.out.println("La valeur totale du stock est  => "+calculerTotalStock());
+            System.out.println("""
+                                        
+                                        
+                    ------------------------------------------------------------------------------------
+                    | Cliquer 1 pour retourner au menu ,ou tapez ce que vous voulez pour quitter : | 
+                    ------------------------------------------------------------------------------------
+                    """);
+            choice = sc.nextInt();
+            if (choice != 1) {
+                return;
+            }
+            printMenu();
+        }
 
     }
 
@@ -239,6 +252,16 @@ public class GestionStock {
             }
         }
         return "Produit n'exist pas avec le nom => "+nom;
+    }
+
+    public static double calculerTotalStock(){
+        double total = 0;
+        for (int i = 0;i<produits.length;i++){
+            if (produits[i]!=null){
+                total += produits[i].calculerTotalProduit();
+            }
+        }
+        return total;
     }
 
     public static void main(String[] args) {
