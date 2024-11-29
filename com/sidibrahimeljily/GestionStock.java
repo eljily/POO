@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class GestionStock {
     // le nombre maximum des produits accepter dans le system.
-    public static int MAX_PRODUCTS_COUNT = 2;
+    public static int MAX_PRODUCTS_COUNT = 100;
     static Produit[] produits = new Produit[MAX_PRODUCTS_COUNT];
 
     public static void printMenu() {
