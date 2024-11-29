@@ -27,7 +27,7 @@ public class GestionStock {
         if (choice == 1) {
             System.out.println("Code du produit: \n");
             int code = sc.nextInt();
-            while (!validerCode(code)){
+            while (!validerCode(code)) {
                 System.out.println("Code deja exist veuillez saisir code valid :\n");
                 code = sc.nextInt();
             }
@@ -35,32 +35,72 @@ public class GestionStock {
             String nom = sc.next();
             System.out.println("Prix du produit :\n");
             double prix = sc.nextDouble();
-            while(!validerPrix(prix)){
+            while (!validerPrix(prix)) {
                 System.out.println("Prix not valide , Veuillez saisir un prix valid svp : \n");
                 prix = sc.nextDouble();
             }
-System.out.println("Quantite du produit : \n");
+            System.out.println("Quantite du produit : \n");
             int quantite = sc.nextInt();
-            while (!validerQuantite(quantite)){
+            while (!validerQuantite(quantite)) {
                 System.out.println("Veuiller saisir quantite valid svp : \n");
                 quantite = sc.nextInt();
             }
-            Produit produit = new Produit(code,nom,prix,quantite);
+            Produit produit = new Produit(code, nom, prix, quantite);
             System.out.println(ajouterProduit(produit));
 
             System.out.println("""
-                    
-                    
+                                        
+                                        
                     ------------------------------------------------------------------------------------
                     | Cliquer 1 pour retourner au menu ,ou tapez ce que vous voulez pour quitter : | " +
                     ------------------------------------------------------------------------------------
                     """);
             choice = sc.nextInt();
-            if (choice!=1){
+            if (choice != 1) {
                 return;
             }
             printMenu();
         }
+        if (choice == 2){
+            System.out.println("Code du produit A modifier: \n");
+            int code = sc.nextInt();
+            while (validerCode(code)) {
+                System.out.println(" Produit n'exist pas avec le code  => "+ code + " veuillez saisir un code valid :\n");
+                code = sc.nextInt();
+            }
+            System.out.println("Nouveau Nom du produit: \n");
+            String nom = sc.next();
+            System.out.println("Nouveau Prix du produit :\n");
+            double prix = sc.nextDouble();
+            while (!validerPrix(prix)) {
+                System.out.println("Prix not valide , Veuillez saisir un prix valid svp : \n");
+                prix = sc.nextDouble();
+            }
+            System.out.println("Nouveau Quantite du produit : \n");
+            int quantite = sc.nextInt();
+            while (!validerQuantite(quantite)) {
+                System.out.println("Veuiller saisir quantite valid svp : \n");
+                quantite = sc.nextInt();
+            }
+            Produit produit = new Produit(code, nom, prix, quantite);
+            System.out.println(modifierProduit(produit));
+
+            System.out.println("""
+                                        
+                                        
+                    ------------------------------------------------------------------------------------
+                    | Cliquer 1 pour retourner au menu ,ou tapez ce que vous voulez pour quitter : | " +
+                    ------------------------------------------------------------------------------------
+                    """);
+            choice = sc.nextInt();
+            if (choice != 1) {
+                return;
+            }
+            printMenu();
+
+    }
+
+
 
     }
 
@@ -71,14 +111,24 @@ System.out.println("Quantite du produit : \n");
                 return "produit ajouter avec success";
             }
         }
-        return "" +"\n"+
+        return "" + "\n" +
                 "Le produit ne peux pas etre ajouter car La capaciter maximum est atteint";
+    }
+
+    public static String modifierProduit(Produit produit) {
+        for (int i = 0; i < produits.length; i++) {
+            if (produits[i] != null && produits[i].getCode() == produit.getCode()) {
+                produits[i] = produit;
+                return "produit modifier avec succes";
+            }
+        }
+        return "produit n'exist pas avec le code que vous avez inserer";
     }
 
     public static boolean validerCode(int code) {
         boolean valid = true;
         for (Produit produit : produits) {
-            if (produit !=null){
+            if (produit != null) {
                 if (produit.getCode() == code) {
                     valid = false;
                 }
@@ -86,16 +136,18 @@ System.out.println("Quantite du produit : \n");
         }
         return valid;
     }
-    public static boolean validerPrix(double prix){
+
+    public static boolean validerPrix(double prix) {
         boolean valid = true;
-        if (prix<=0){
+        if (prix <= 0) {
             valid = false;
         }
         return valid;
     }
-    public static boolean validerQuantite(int quantite){
+
+    public static boolean validerQuantite(int quantite) {
         boolean valid = true;
-        if (quantite<=0){
+        if (quantite <= 0) {
             valid = false;
         }
         return valid;
