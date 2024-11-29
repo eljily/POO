@@ -1,5 +1,6 @@
 package com.sidibrahimeljily;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class GestionStock {
@@ -52,7 +53,7 @@ public class GestionStock {
                                         
                                         
                     ------------------------------------------------------------------------------------
-                    | Cliquer 1 pour retourner au menu ,ou tapez ce que vous voulez pour quitter : | " +
+                    | Cliquer 1 pour retourner au menu ,ou tapez ce que vous voulez pour quitter : | 
                     ------------------------------------------------------------------------------------
                     """);
             choice = sc.nextInt();
@@ -89,7 +90,7 @@ public class GestionStock {
                                         
                                         
                     ------------------------------------------------------------------------------------
-                    | Cliquer 1 pour retourner au menu ,ou tapez ce que vous voulez pour quitter : | " +
+                    | Cliquer 1 pour retourner au menu ,ou tapez ce que vous voulez pour quitter : | 
                     ------------------------------------------------------------------------------------
                     """);
             choice = sc.nextInt();
@@ -112,7 +113,7 @@ public class GestionStock {
                                         
                                         
                     ------------------------------------------------------------------------------------
-                    | Cliquer 1 pour retourner au menu ,ou tapez ce que vous voulez pour quitter : | " +
+                    | Cliquer 1 pour retourner au menu ,ou tapez ce que vous voulez pour quitter : | 
                     ------------------------------------------------------------------------------------
                     """);
             choice = sc.nextInt();
@@ -121,6 +122,21 @@ public class GestionStock {
             }
             printMenu();
 
+        }
+        if(choice==4){
+            afficherListProduits();
+            System.out.println("""
+                                        
+                                        
+                    ------------------------------------------------------------------------------------
+                    | Cliquer 1 pour retourner au menu ,ou tapez ce que vous voulez pour quitter : |  
+                    ------------------------------------------------------------------------------------
+                    """);
+            choice = sc.nextInt();
+            if (choice != 1) {
+                return;
+            }
+            printMenu();
         }
 
 
@@ -186,6 +202,14 @@ public class GestionStock {
             valid = false;
         }
         return valid;
+    }
+
+    public static void afficherListProduits(){
+        for (int i=0;i<produits.length;i++){
+            if (produits[i]!=null){
+                System.out.println( "Produit "+(i+1)+" => "+produits[i].toString());
+            }
+        }
     }
 
     public static void main(String[] args) {

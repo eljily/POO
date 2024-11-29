@@ -55,7 +55,7 @@ public class Produit {
     //to string pour afficher les informations d'un produit.
     @Override
     public String toString() {
-        return "Produit{" +
+        return "{" +
                 "code=" + code +
                 ", nom='" + nom + '\'' +
                 ", quantite=" + quantite +
